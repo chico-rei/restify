@@ -1,8 +1,8 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use Restify\Contracts\Commands\ListCommand as ListCommandContract;
+use ChicoRei\Packages\Restify\Contracts\Commands\ListCommand as ListCommandContract;
 
 class ListCommand extends BaseCommand implements ListCommandContract
 {

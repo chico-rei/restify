@@ -1,4 +1,4 @@
-<?php namespace Restify\Exceptions;
+<?php namespace ChicoRei\Packages\Restify\Exceptions;
 
 use Exception;
 use Illuminate\Support\MessageBag;

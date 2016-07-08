@@ -1,4 +1,4 @@
-<?php namespace Restify\Exceptions;
+<?php namespace ChicoRei\Packages\Restify\Exceptions;
 
 /**
  * Created by PhpStorm.

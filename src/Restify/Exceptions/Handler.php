@@ -1,9 +1,9 @@
-<?php namespace Restify\Exceptions;
+<?php namespace ChicoRei\Packages\Restify\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Psr\Log\LoggerInterface;
-use Restify\Factories\ResponseFactory;
+use ChicoRei\Packages\Restify\Factories\ResponseFactory;
 
 class Handler extends ExceptionHandler
 {

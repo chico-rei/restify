@@ -1,4 +1,4 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Config;
 use Illuminate\Http\Request;

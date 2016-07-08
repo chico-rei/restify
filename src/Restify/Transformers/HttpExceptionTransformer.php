@@ -1,7 +1,7 @@
-<?php namespace Restify\Transformers;
+<?php namespace ChicoRei\Packages\Restify\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use Restify\Exceptions\ResourceException;
+use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**

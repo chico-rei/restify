@@ -1,4 +1,4 @@
-<?php namespace Restify\Factories;
+<?php namespace ChicoRei\Packages\Restify\Factories;
 
 use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory as Response;
@@ -10,8 +10,8 @@ use Input;
 use League\Fractal;
 use League\Fractal\Serializer\ArraySerializer;
 use Psy\Exception\FatalErrorException;
-use Restify\Exceptions\ResourceException;
-use Restify\Transformers\BaseTransformer;
+use ChicoRei\Packages\Restify\Exceptions\ResourceException;
+use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

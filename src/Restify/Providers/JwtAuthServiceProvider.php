@@ -1,4 +1,4 @@
-<?php namespace Restify\Providers;
+<?php namespace ChicoRei\Packages\Restify\Providers;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -24,7 +24,7 @@ class JwtAuthServiceProvider extends ServiceProvider
     {
         $router->group(['prefix' => $config->get('restify.prefix', '')], function (Router $router) use ($config)
         {
-            $router->post($config->get('restify.jwt.login_route', 'auth/login'), '\Restify\Http\Controllers\AuthController@postLogin');
+            $router->post($config->get('restify.jwt.login_route', 'auth/login'), '\ChicoRei\Packages\Restify\Http\Controllers\AuthController@postLogin');
         });
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace Restify\Contracts\Commands;
+<?php namespace ChicoRei\Packages\Restify\Contracts\Commands;
 
 /**
  * Created by PhpStorm.

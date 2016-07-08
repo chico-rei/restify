@@ -1,11 +1,11 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Restify\Contracts\Commands\DeleteCommand as DeleteCommandContract;
-use Restify\Exceptions\DeleteResourceException;
+use ChicoRei\Packages\Restify\Contracts\Commands\DeleteCommand as DeleteCommandContract;
+use ChicoRei\Packages\Restify\Exceptions\DeleteResourceException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DeleteCommand extends BaseCommand implements DeleteCommandContract

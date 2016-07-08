@@ -1,7 +1,7 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Illuminate\Database\Eloquent\Model;
-use Restify\Contracts\Commands\CreateCommand as CreateCommandContract;
+use ChicoRei\Packages\Restify\Contracts\Commands\CreateCommand as CreateCommandContract;
 
 class CreateCommand extends BaseCommand implements CreateCommandContract
 {

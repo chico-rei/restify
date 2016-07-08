@@ -1,11 +1,11 @@
-<?php namespace Restify\Factories;
+<?php namespace ChicoRei\Packages\Restify\Factories;
 
-use Restify\Commands\BaseCommand;
-use Restify\Commands\CreateCommand;
-use Restify\Commands\DeleteCommand;
-use Restify\Commands\ListCommand;
-use Restify\Commands\ReadCommand;
-use Restify\Commands\UpdateCommand;
+use ChicoRei\Packages\Restify\Commands\BaseCommand;
+use ChicoRei\Packages\Restify\Commands\CreateCommand;
+use ChicoRei\Packages\Restify\Commands\DeleteCommand;
+use ChicoRei\Packages\Restify\Commands\ListCommand;
+use ChicoRei\Packages\Restify\Commands\ReadCommand;
+use ChicoRei\Packages\Restify\Commands\UpdateCommand;
 
 /**
  * Created by PhpStorm.
@@ -79,6 +79,6 @@ class CommandFactory
         $path = str_replace('{nestedModel}', $nestedResource, $path);
         $path = str_replace('{prefix}', $prefix, $path);
 
-        return class_exists($path) ? $path : "Restify\\Commands\\" . $prefix . "Command";
+        return class_exists($path) ? $path : "ChicoRei\\Packages\\Restify\\Commands\\" . $prefix . "Command";
     }
 }

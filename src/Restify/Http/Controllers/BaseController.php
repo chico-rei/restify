@@ -1,13 +1,13 @@
-<?php namespace Restify\Http\Controllers;
+<?php namespace ChicoRei\Packages\Restify\Http\Controllers;
 
 use Exception;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Log;
-use Restify\Exceptions\ResourceException;
-use Restify\Factories\ResponseFactory;
-use Restify\Factories\ValidationRulesFactory;
+use ChicoRei\Packages\Restify\Exceptions\ResourceException;
+use ChicoRei\Packages\Restify\Factories\ResponseFactory;
+use ChicoRei\Packages\Restify\Factories\ValidationRulesFactory;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 /**

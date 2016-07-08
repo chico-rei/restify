@@ -1,8 +1,8 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Restify\Contracts\Commands\UpdateCommand as UpdateCommandContract;
+use ChicoRei\Packages\Restify\Contracts\Commands\UpdateCommand as UpdateCommandContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UpdateCommand extends BaseCommand implements UpdateCommandContract

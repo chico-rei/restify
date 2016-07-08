@@ -1,6 +1,6 @@
-<?php namespace Restify\Factories;
+<?php namespace ChicoRei\Packages\Restify\Factories;
 
-use Restify\Transformers\BaseTransformer;
+use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
 
 /**
  * Created by PhpStorm.
@@ -44,7 +44,7 @@ class TransformerFactory
      */
     private static function restifyTransformerClass($className)
     {
-        $classPath = 'Restify\\Transformers\\' . $className . 'Transformer';
+        $classPath = 'ChicoRei\\Packages\\Restify\\Transformers\\' . $className . 'Transformer';
 
         return class_exists($classPath) ? $classPath : BaseTransformer::class;
     }

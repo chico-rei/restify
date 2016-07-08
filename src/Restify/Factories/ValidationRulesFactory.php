@@ -1,7 +1,7 @@
-<?php namespace Restify\Factories;
+<?php namespace ChicoRei\Packages\Restify\Factories;
 
 use League\Fractal;
-use Restify\Services\Validation\Validator;
+use ChicoRei\Packages\Restify\Services\Validation\Validator;
 
 /**
  * Created by PhpStorm.

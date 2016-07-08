@@ -1,8 +1,8 @@
-<?php namespace Restify\Commands;
+<?php namespace ChicoRei\Packages\Restify\Commands;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Restify\Contracts\Commands\ReadCommand as ReadCommandContract;
+use ChicoRei\Packages\Restify\Contracts\Commands\ReadCommand as ReadCommandContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ReadCommand extends BaseCommand implements ReadCommandContract

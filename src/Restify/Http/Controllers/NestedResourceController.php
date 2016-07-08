@@ -1,8 +1,8 @@
-<?php namespace Restify\Http\Controllers;
+<?php namespace ChicoRei\Packages\Restify\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Restify\Factories\CommandFactory;
+use ChicoRei\Packages\Restify\Factories\CommandFactory;
 
 /**
  * Created by PhpStorm.

@@ -1,4 +1,4 @@
-<?php namespace Restify\Services\Validation;
+<?php namespace ChicoRei\Packages\Restify\Services\Validation;
 
 /**
  * Created by PhpStorm.

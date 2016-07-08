@@ -1,4 +1,4 @@
-<?php namespace Restify\Transformers;
+<?php namespace ChicoRei\Packages\Restify\Transformers;
 
 use Exception;
 use League\Fractal\TransformerAbstract;

@@ -1,4 +1,4 @@
-<?php namespace Restify\Transformers;
+<?php namespace ChicoRei\Packages\Restify\Transformers;
 
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;

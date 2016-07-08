@@ -1,4 +1,4 @@
-<?php namespace Restify\Http\Controllers;
+<?php namespace ChicoRei\Packages\Restify\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
