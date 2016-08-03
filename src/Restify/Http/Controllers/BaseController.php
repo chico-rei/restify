@@ -25,6 +25,16 @@ class BaseController extends Controller
     protected $prefix;
 
     /**
+     * @var string
+     */
+    protected $pluralizedModels;
+
+    /**
+     * @var string
+     */
+    protected $pluralizedRoutes;
+
+    /**
      * @var bool
      */
     protected $jwtEnabled;
@@ -69,6 +79,8 @@ class BaseController extends Controller
     public function __construct(Config $config, ValidationRulesFactory $validationRulesFactory, ResponseFactory $responseFactory)
     {
         $this->prefix = $config->get('restify.prefix');
+        $this->pluralizedModels = $config->get('restify.pluralized_models');
+        $this->pluralizedRoutes = $config->get('restify.pluralized_routes');
         $this->jwtEnabled = $config->get('restify.jwt.enabled', false);
         $this->jwtRefreshToken = $config->get('restify.jwt.refresh_token', false);
         $this->publicRoutes = $config->get('restify.jwt.public_routes', []);
@@ -114,7 +126,7 @@ class BaseController extends Controller
         $pathComponents = $this->currentPathComponents();
 
         // Translates first element of the path to class name
-        return Str::studly(Str::singular($pathComponents[0]));
+        return $this->toClassName($pathComponents[0]);
     }
 
     /**
@@ -126,8 +138,22 @@ class BaseController extends Controller
     {
         $pathComponents = $this->currentPathComponents();
 
-        // Translates first element of the path to class name
-        return Str::studly(Str::singular($pathComponents[2]));
+        // Translates last element of the path to class name
+        return $this->toClassName($pathComponents[2]);
+    }
+
+    /**
+     * Convert string to class name. First it should convert to studly caps and then return the singular format
+     * if the package is configured to use pluralized routes and models are not pluralized.
+     *
+     * @param string $value
+     * @return string Respective class name
+     */
+    protected function toClassName($value)
+    {
+        $studly = Str::studly($value);
+
+        return $this->pluralizedRoutes && !$this->pluralizedModels ? Str::singular($studly) : $studly;
     }
     //</editor-fold>
 

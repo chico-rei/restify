@@ -9,6 +9,16 @@ class BaseCommand
     /**
      * @var string
      */
+    protected $pluralizedModels;
+
+    /**
+     * @var string
+     */
+    protected $pluralizedRoutes;
+
+    /**
+     * @var string
+     */
     protected $modelPath;
 
     /**
@@ -32,6 +42,8 @@ class BaseCommand
      */
     public function __construct($modelName, $nestedModelName = null)
     {
+        $this->pluralizedModels = Config::get('restify.paths.pluralized_models');
+        $this->pluralizedRoutes = Config::get('restify.paths.pluralized_routes');
         $this->modelPath = Config::get('restify.paths.models');
 
         $this->modelName = $modelName;
@@ -90,7 +102,9 @@ class BaseCommand
     {
         if (!$this->isValidNestedModelName()) return null;
 
-        return Str::camel(Str::plural($this->nestedModelName));
+        $pluralized = $this->pluralizedModels ? Str::plural($this->nestedModelName) : $this->nestedModelName;
+
+        return Str::camel($pluralized);
     }
 
     /**
@@ -100,7 +114,9 @@ class BaseCommand
     {
         if (!$this->isValidNestedModelName()) return null;
 
-        return Str::snake(Str::singular($this->nestedModelName)) . '_id';
+        $singular = $this->pluralizedModels ? Str::singular($this->nestedModelName) : $this->nestedModelName;
+
+        return Str::snake($singular) . '_id';
     }
 
     /**
