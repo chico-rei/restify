@@ -110,11 +110,11 @@ class BaseCommand
     {
         if (!$this->isValidModelName()) return null;
 
-        $className = $this->modelClassName();
+        $param = Str::snake($this->modelName);
 
-        $param = $className::getModel()->getTable();
+        $value = $this->request->route($param);
 
-        return $this->request->route($param);
+        return $value ?: $this->request->route(Str::plural($param));
     }
 
     /**
@@ -124,9 +124,11 @@ class BaseCommand
     {
         if (!$this->isValidNestedModelName()) return null;
 
-        $param = Str::snake(Str::plural($this->nestedModelName));
+        $param = Str::snake($this->nestedModelName);
 
-        return $this->request->route($param);
+        $value = $this->request->route($param);
+
+        return $value ?: $this->request->route(Str::plural($param));
     }
 
     /**
