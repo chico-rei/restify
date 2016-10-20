@@ -3,6 +3,7 @@
 use Exception;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 use Log;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
@@ -58,15 +59,20 @@ class BaseController extends Controller
      * @var string
      */
     protected $failedValidationMessage;
+    /**
+     * @var Router
+     */
+    private $router;
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
     /**
      * @param Config $config
+     * @param Router $router
      * @param ValidationRulesFactory $validationRulesFactory
      * @param ResponseFactory $responseFactory
      */
-    public function __construct(Config $config, ValidationRulesFactory $validationRulesFactory, ResponseFactory $responseFactory)
+    public function __construct(Config $config, Router $router, ValidationRulesFactory $validationRulesFactory, ResponseFactory $responseFactory)
     {
         $this->prefix = $config->get('restify.prefix');
         $this->pluralizedModels = $config->get('restify.pluralized_models');
@@ -75,6 +81,7 @@ class BaseController extends Controller
 
         $this->validationRulesFactory = $validationRulesFactory;
         $this->responseFactory = $responseFactory;
+        $this->router = $router;
     }
     //</editor-fold>
 
@@ -87,7 +94,7 @@ class BaseController extends Controller
     private function currentPathComponents()
     {
         // Retrieve current route
-        $route = $this->getRouter()->current()->getPath();
+        $route = $this->router->current()->getPath();
 
         // Remove prefix from url path
         return explode('/', str_replace($this->prefix . '/', '', $route));
