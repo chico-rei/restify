@@ -1,12 +1,10 @@
 <?php namespace ChicoRei\Packages\Restify\Factories;
 
 use Exception;
-use Illuminate\Contracts\Routing\ResponseFactory as Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
-use Input;
 use League\Fractal;
 use League\Fractal\Serializer\ArraySerializer;
 use Psy\Exception\FatalErrorException;
@@ -24,10 +22,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class ResponseFactory
 {
     //<editor-fold desc="Fields">
-    /**
-     * @var Response
-     */
-    private $response;
     /**
      * @var Fractal\Manager
      */
@@ -48,13 +42,11 @@ class ResponseFactory
 
     //<editor-fold desc="Constructor">
     /**
-     * @param Response $response
-     * @param Fractal\Manager $fractal
+     * ResponseFactory constructor.
      */
-    public function __construct(Response $response, Fractal\Manager $fractal)
+    public function __construct()
     {
-        $this->response = $response;
-        $this->fractal = $fractal;
+        $this->fractal = new Fractal\Manager();
         $this->fractal->setSerializer(new ArraySerializer());
     }
     //</editor-fold>
@@ -115,7 +107,7 @@ class ResponseFactory
         // Override status code
         if (isset($status)) $this->setStatusCode($status);
 
-        return $this->response->json($this->getContent(), $this->getStatusCode());
+        return response()->json($this->getContent(), $this->getStatusCode());
     }
     //</editor-fold>
 
@@ -177,7 +169,7 @@ class ResponseFactory
     private function handleResource(Fractal\Resource\ResourceAbstract $resource)
     {
         return $this->fractal
-            ->parseIncludes(Input::get('include', []))
+            ->parseIncludes(request('include', []))
             ->createData($resource)
             ->toArray();
     }

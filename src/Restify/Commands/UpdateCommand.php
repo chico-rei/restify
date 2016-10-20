@@ -30,7 +30,7 @@ class UpdateCommand extends BaseCommand implements UpdateCommandContract
         {
             throw new NotFoundHttpException(trans('restify.errors.not_found', [
                 'model' => $this->nestedModelDisplayName() ?: $this->modelDisplayName()
-            ]));
+            ]), $e);
         }
     }
 

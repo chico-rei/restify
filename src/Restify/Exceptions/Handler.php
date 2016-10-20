@@ -2,28 +2,10 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Psr\Log\LoggerInterface;
 use ChicoRei\Packages\Restify\Factories\ResponseFactory;
 
 class Handler extends ExceptionHandler
 {
-
-    /**
-     * @var
-     */
-    protected $responseFactory;
-
-    /**
-     * @param LoggerInterface $log
-     * @param ResponseFactory $responseFactory
-     */
-    public function __construct(LoggerInterface $log, ResponseFactory $responseFactory)
-    {
-        parent::__construct($log);
-
-        $this->responseFactory = $responseFactory;
-    }
-
     /**
      * Report or log an exception.
      *
@@ -48,7 +30,9 @@ class Handler extends ExceptionHandler
     {
         if ($request->wantsJson())
         {
-            return $this->responseFactory->create($e);
+            $responseFactory = new ResponseFactory();
+
+            return $responseFactory->create($e);
         }
 
         return parent::render($request, $e);

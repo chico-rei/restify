@@ -5,7 +5,6 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
-use Log;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use ChicoRei\Packages\Restify\Factories\ResponseFactory;
 use ChicoRei\Packages\Restify\Factories\ValidationRulesFactory;
@@ -157,7 +156,7 @@ class BaseController extends Controller
             return $this->responseFactory->create($data);
         } catch (Exception $e)
         {
-            Log::debug($e->getMessage() . ': ' . $e->getTraceAsString());
+            app('log')->debug($e->getMessage() . ': ' . $e->getTraceAsString());
 
             return $this->responseFactory->create($e);
         }

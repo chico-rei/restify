@@ -40,13 +40,13 @@ class DeleteCommand extends BaseCommand implements DeleteCommandContract
             throw new NotFoundHttpException(trans('restify.errors.not_found', [
                 'model' => $this->nestedModelDisplayName() ?: $this->modelDisplayName(),
                 'id' => $id
-            ]));
+            ]), $e);
         } catch (Exception $e)
         {
             throw new DeleteResourceException(trans('restify.errors.delete', [
                 'model' => $this->nestedModelDisplayName() ?: $this->modelDisplayName(),
                 'id' => $id
-            ]));
+            ]), null, $e);
         }
     }
 }

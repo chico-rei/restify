@@ -29,7 +29,7 @@ class ReadCommand extends BaseCommand implements ReadCommandContract
         {
             throw new NotFoundHttpException(trans('restify.errors.not_found', [
                 'model' => $this->nestedModelDisplayName() ?: $this->modelDisplayName()
-            ]));
+            ]), $e);
         }
     }
 }

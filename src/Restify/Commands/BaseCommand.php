@@ -1,6 +1,5 @@
 <?php namespace ChicoRei\Packages\Restify\Commands;
 
-use Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -42,9 +41,9 @@ class BaseCommand
      */
     public function __construct($modelName, $nestedModelName = null)
     {
-        $this->pluralizedModels = Config::get('restify.paths.pluralized_models');
-        $this->pluralizedRoutes = Config::get('restify.paths.pluralized_routes');
-        $this->modelPath = Config::get('restify.paths.models');
+        $this->pluralizedModels = config('restify.paths.pluralized_models');
+        $this->pluralizedRoutes = config('restify.paths.pluralized_routes');
+        $this->modelPath = config('restify.paths.models');
 
         $this->modelName = $modelName;
         $this->nestedModelName = $nestedModelName;

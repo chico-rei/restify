@@ -1,6 +1,5 @@
 <?php namespace ChicoRei\Packages\Restify\Factories;
 
-use League\Fractal;
 use ChicoRei\Packages\Restify\Services\Validation\Validator;
 
 /**
