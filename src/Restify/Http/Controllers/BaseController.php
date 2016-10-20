@@ -35,16 +35,6 @@ class BaseController extends Controller
     protected $pluralizedRoutes;
 
     /**
-     * @var bool
-     */
-    protected $jwtEnabled;
-
-    /**
-     * @var bool
-     */
-    protected $jwtRefreshToken;
-
-    /**
      * @var ValidationRulesFactory
      */
     protected $validationRulesFactory;
@@ -81,23 +71,10 @@ class BaseController extends Controller
         $this->prefix = $config->get('restify.prefix');
         $this->pluralizedModels = $config->get('restify.pluralized_models');
         $this->pluralizedRoutes = $config->get('restify.pluralized_routes');
-        $this->jwtEnabled = $config->get('restify.jwt.enabled', false);
-        $this->jwtRefreshToken = $config->get('restify.jwt.refresh_token', false);
-        $this->publicRoutes = $config->get('restify.jwt.public_routes', []);
         $this->failedValidationMessage = $config->get('restify.failed_validation_message');
 
         $this->validationRulesFactory = $validationRulesFactory;
         $this->responseFactory = $responseFactory;
-
-        $url = $this->getRouter()->current();
-
-        // Add filters if the current route is a public route.
-        if ($this->jwtEnabled && $url && !in_array($url->getPath(), $this->publicRoutes))
-        {
-            $this->middleware('jwt.auth');
-
-            if ($this->jwtRefreshToken) $this->middleware('jwt.refresh');
-        }
     }
     //</editor-fold>
 
