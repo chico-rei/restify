@@ -7,9 +7,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 use League\Fractal;
 use League\Fractal\Serializer\ArraySerializer;
-use Psy\Exception\FatalErrorException;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
+use Symfony\Component\Debug\Exception\FatalErrorException;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
