@@ -93,7 +93,7 @@ class BaseController extends Controller
     private function currentPathComponents()
     {
         // Retrieve current route
-        $route = $this->router->current()->getPath();
+        $route = $this->router->current()->uri();
 
         // Remove prefix from url path
         return explode('/', str_replace($this->prefix . '/', '', $route));
