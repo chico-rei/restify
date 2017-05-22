@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Config\Repository as Config;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
@@ -58,6 +59,12 @@ class BaseController extends Controller
      * @var string
      */
     protected $failedValidationMessage;
+
+    /**
+     * @var boolean
+     */
+    protected $exceptionHandling;
+
     /**
      * @var Router
      */
@@ -77,6 +84,7 @@ class BaseController extends Controller
         $this->pluralizedModels = $config->get('restify.pluralized_models');
         $this->pluralizedRoutes = $config->get('restify.pluralized_routes');
         $this->failedValidationMessage = $config->get('restify.failed_validation_message');
+        $this->exceptionHandling = $config->get('restify.exception_handling', true);
 
         $this->validationRulesFactory = $validationRulesFactory;
         $this->responseFactory = $responseFactory;
@@ -156,10 +164,21 @@ class BaseController extends Controller
             return $this->responseFactory->create($data);
         } catch (Exception $e)
         {
-            app('log')->error($e->getMessage() . ': ' . $e->getTraceAsString());
+            app(ExceptionHandler::class)->report($e);
 
-            return $this->responseFactory->create($e);
+            return $this->renderException($e);
         }
+    }
+
+    /**
+     * @param Exception $e
+     * @return mixed
+     */
+    protected function renderException($e)
+    {
+        return $this->exceptionHandling
+            ? $this->responseFactory->create($e)
+            : app(ExceptionHandler::class)->render(request(), $e);
     }
 
     /**
