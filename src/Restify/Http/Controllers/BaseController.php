@@ -156,7 +156,7 @@ class BaseController extends Controller
             return $this->responseFactory->create($data);
         } catch (Exception $e)
         {
-            app('log')->debug($e->getMessage() . ': ' . $e->getTraceAsString());
+            app('log')->error($e->getMessage() . ': ' . $e->getTraceAsString());
 
             return $this->responseFactory->create($e);
         }
