@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "laravel/framework": "5.4.*",
+        "laravel/framework": "5.*",
         "league/fractal": "^0.13.0"
     },
     "autoload": {
