@@ -14,8 +14,11 @@ class ListCommand extends BaseCommand implements ListCommandContract
     public function handle()
     {
         $query = $this->query();
+        $columns = $this->getColumns();
 
-        return $this->getPaginate() ? $query->paginate($this->getPerPage()) : $query->get();
+        return $this->getPaginate()
+            ? $query->paginate($this->getPerPage(), $columns)
+            : $query->get($columns);
     }
 
     /**
@@ -89,8 +92,6 @@ class ListCommand extends BaseCommand implements ListCommandContract
                 $query->orderBy($column, $direction);
             }
         }
-
-        if ($columns = $this->getColumns()) $query->select($columns);
 
         return $query;
     }
