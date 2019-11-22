@@ -21,7 +21,7 @@ class BaseController extends Controller
 {
     //<editor-fold desc="Fields">
     /**
-     * @var string
+     * @var array
      */
     protected $prefix;
 
@@ -80,7 +80,7 @@ class BaseController extends Controller
      */
     public function __construct(Config $config, Router $router, ValidationRulesFactory $validationRulesFactory, ResponseFactory $responseFactory)
     {
-        $this->prefix = $config->get('restify.prefix');
+        $this->prefix = (array) $config->get('restify.prefix');
         $this->pluralizedModels = $config->get('restify.pluralized_models');
         $this->pluralizedRoutes = $config->get('restify.pluralized_routes');
         $this->failedValidationMessage = $config->get('restify.failed_validation_message');
@@ -104,7 +104,14 @@ class BaseController extends Controller
         $route = $this->router->current()->uri();
 
         // Remove prefix from url path
-        return explode('/', str_replace($this->prefix . '/', '', $route));
+        foreach ($this->prefix as $prefix) {
+            if (mb_strpos($route, rtrim($prefix, '/').'/') !== false) {
+                $route = str_replace($prefix . '/', '', $route);
+                break;
+            }
+        }
+
+        return explode('/', $route);
     }
 
     /**
