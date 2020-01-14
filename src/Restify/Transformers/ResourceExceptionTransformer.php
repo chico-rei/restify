@@ -4,10 +4,9 @@ use League\Fractal\TransformerAbstract;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:12 PM
+ * Class ResourceExceptionTransformer
+ *
+ * @package ChicoRei\Packages\Restify\Transformers
  */
 class ResourceExceptionTransformer extends TransformerAbstract
 {

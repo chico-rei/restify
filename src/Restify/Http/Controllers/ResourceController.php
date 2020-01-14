@@ -5,10 +5,9 @@ use Illuminate\Http\Response;
 use ChicoRei\Packages\Restify\Factories\CommandFactory;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 4/26/15
- * Time: 8:59 PM
+ * Class ResourceController
+ *
+ * @package ChicoRei\Packages\Restify\Http\Controllers
  */
 class ResourceController extends BaseController
 {

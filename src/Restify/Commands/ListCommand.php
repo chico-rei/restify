@@ -4,6 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use ChicoRei\Packages\Restify\Contracts\Commands\ListCommand as ListCommandContract;
 
+/**
+ * Class ListCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class ListCommand extends BaseCommand implements ListCommandContract
 {
     /**

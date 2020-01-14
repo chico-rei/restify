@@ -3,10 +3,9 @@
 use ChicoRei\Packages\Restify\Services\Validation\Validator;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/20/15
- * Time: 9:20 PM
+ * Class ValidationRulesFactory
+ *
+ * @package ChicoRei\Packages\Restify\Factories
  */
 class ValidationRulesFactory
 {

@@ -5,6 +5,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use ChicoRei\Packages\Restify\Contracts\Commands\UpdateCommand as UpdateCommandContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class UpdateCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class UpdateCommand extends BaseCommand implements UpdateCommandContract
 {
     /**

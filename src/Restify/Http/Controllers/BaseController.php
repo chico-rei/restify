@@ -12,10 +12,9 @@ use ChicoRei\Packages\Restify\Factories\ValidationRulesFactory;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 4/26/15
- * Time: 8:59 PM
+ * Class BaseController
+ *
+ * @package ChicoRei\Packages\Restify\Http\Controllers
  */
 class BaseController extends Controller
 {

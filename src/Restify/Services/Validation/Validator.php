@@ -1,10 +1,9 @@
 <?php namespace ChicoRei\Packages\Restify\Services\Validation;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/20/15
- * Time: 9:19 PM
+ * Class Validator
+ *
+ * @package ChicoRei\Packages\Restify\Services\Validation
  */
 abstract class Validator
 {

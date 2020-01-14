@@ -5,10 +5,9 @@ use Illuminate\Http\Response;
 use ChicoRei\Packages\Restify\Factories\CommandFactory;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 6/12/15
- * Time: 0:34 AM
+ * Class NestedResourceController
+ *
+ * @package ChicoRei\Packages\Restify\Http\Controllers
  */
 class NestedResourceController extends BaseController
 {

@@ -5,10 +5,9 @@ use League\Fractal\TransformerAbstract;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:12 PM
+ * Class ExceptionTransformer
+ *
+ * @package ChicoRei\Packages\Restify\Transformers
  */
 class ExceptionTransformer extends TransformerAbstract
 {

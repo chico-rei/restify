@@ -14,10 +14,9 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:20 PM
+ * Class ResponseFactory
+ *
+ * @package ChicoRei\Packages\Restify\Factories
  */
 class ResponseFactory
 {

@@ -3,10 +3,9 @@
 use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:20 PM
+ * Class TransformerFactory
+ *
+ * @package ChicoRei\Packages\Restify\Factories
  */
 class TransformerFactory
 {

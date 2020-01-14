@@ -4,6 +4,11 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use ChicoRei\Packages\Restify\Factories\ResponseFactory;
 
+/**
+ * Class Handler
+ *
+ * @package ChicoRei\Packages\Restify\Exceptions
+ */
 class Handler extends ExceptionHandler
 {
     /**

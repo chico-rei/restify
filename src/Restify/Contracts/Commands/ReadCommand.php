@@ -1,10 +1,9 @@
 <?php namespace ChicoRei\Packages\Restify\Contracts\Commands;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/9/15
- * Time: 8:40 PM
+ * Interface ReadCommand
+ *
+ * @package ChicoRei\Packages\Restify\Contracts\Commands
  */
 interface ReadCommand
 {

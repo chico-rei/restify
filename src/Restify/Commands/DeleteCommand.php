@@ -8,6 +8,11 @@ use ChicoRei\Packages\Restify\Contracts\Commands\DeleteCommand as DeleteCommandC
 use ChicoRei\Packages\Restify\Exceptions\DeleteResourceException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class DeleteCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class DeleteCommand extends BaseCommand implements DeleteCommandContract
 {
     /**

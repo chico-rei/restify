@@ -8,10 +8,9 @@ use ChicoRei\Packages\Restify\Commands\ReadCommand;
 use ChicoRei\Packages\Restify\Commands\UpdateCommand;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:20 PM
+ * Class CommandFactory
+ *
+ * @package ChicoRei\Packages\Restify\Factories
  */
 class CommandFactory
 {

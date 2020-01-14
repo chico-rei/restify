@@ -4,10 +4,9 @@ use League\Fractal\TransformerAbstract;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/4/15
- * Time: 9:12 PM
+ * Class HttpExceptionTransformer
+ *
+ * @package ChicoRei\Packages\Restify\Transformers
  */
 class HttpExceptionTransformer extends TransformerAbstract
 {

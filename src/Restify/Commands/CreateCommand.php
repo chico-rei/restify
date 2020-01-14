@@ -3,6 +3,11 @@
 use Illuminate\Database\Eloquent\Model;
 use ChicoRei\Packages\Restify\Contracts\Commands\CreateCommand as CreateCommandContract;
 
+/**
+ * Class CreateCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class CreateCommand extends BaseCommand implements CreateCommandContract
 {
     /**

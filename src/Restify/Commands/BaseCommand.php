@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+/**
+ * Class BaseCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class BaseCommand
 {
     /**

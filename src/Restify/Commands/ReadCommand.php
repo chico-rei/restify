@@ -5,6 +5,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use ChicoRei\Packages\Restify\Contracts\Commands\ReadCommand as ReadCommandContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class ReadCommand
+ *
+ * @package ChicoRei\Packages\Restify\Commands
+ */
 class ReadCommand extends BaseCommand implements ReadCommandContract
 {
     /**

@@ -5,10 +5,9 @@ use Illuminate\Support\MessageBag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Created by PhpStorm.
- * User: bendia
- * Date: 5/2/15
- * Time: 3:35 PM
+ * Class ResourceException
+ *
+ * @package ChicoRei\Packages\Restify\Exceptions
  */
 class ResourceException extends HttpException
 {
