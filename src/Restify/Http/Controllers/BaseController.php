@@ -170,6 +170,10 @@ class BaseController extends Controller
 
             $transformer = array_get($this->router->current()->defaults, 'restify.transformer');
 
+            if (is_string($transformer) && class_exists($transformer)) {
+                $transformer = new $transformer;
+            }
+
             return $this->responseFactory->create($data, null, $transformer);
         } catch (Exception $e)
         {
