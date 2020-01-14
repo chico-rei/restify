@@ -21,7 +21,10 @@
         "laravel": {
             "providers": [
                 "ChicoRei\\Packages\\Restify\\RouterServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Restify": "ChicoRei\\Packages\\Restify\\Router"
+            }
         }
     }
 }
