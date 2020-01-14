@@ -23,7 +23,7 @@
                 "ChicoRei\\Packages\\Restify\\RouterServiceProvider"
             ],
             "aliases": {
-                "Restify": "ChicoRei\\Packages\\Restify\\Router"
+                "Restify": "ChicoRei\\Packages\\Restify\\Facades\\Router"
             }
         }
     }

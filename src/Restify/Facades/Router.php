@@ -1,16 +1,16 @@
 <?php
 
-namespace ChicoRei\Packages\Restify;
+namespace ChicoRei\Packages\Restify\Facades;
 
 use ChicoRei\Packages\Restify\Contracts\Router as RouterContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Restify
+ * Class Router
  *
- * @package ChicoRei\Packages\Restify
+ * @package ChicoRei\Packages\Restify\Facades
  */
-class Restify extends Facade
+class Router extends Facade
 {
     /**
      * Get the registered name of the component.
