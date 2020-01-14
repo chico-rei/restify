@@ -168,7 +168,9 @@ class BaseController extends Controller
         {
             $data = parent::dispatch($command);
 
-            return $this->responseFactory->create($data);
+            $transformer = $this->router->current()->defaults['restify.transformer'];
+
+            return $this->responseFactory->create($data, null, $transformer);
         } catch (Exception $e)
         {
             app(ExceptionHandler::class)->report($e);
