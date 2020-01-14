@@ -16,5 +16,12 @@
         "psr-4" : {
             "ChicoRei\\Packages\\" : ["src/"]
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ChicoRei\\Packages\\Restify\\RouterServiceProvider"
+            ]
+        }
     }
 }
