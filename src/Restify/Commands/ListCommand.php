@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Str;
 use ChicoRei\Packages\Restify\Contracts\Commands\ListCommand as ListCommandContract;
 
 /**
@@ -68,8 +69,11 @@ class ListCommand extends BaseCommand implements ListCommandContract
             $allowedMethods = ['with'];
 
             // Invalid scope name
-            if (empty($scopeName) || ! method_exists(new $modelClass, in_array($scopeName, $allowedMethods) ? $scopeName : 'scope'.ucfirst($scopeName)))
-            {
+            if (empty($scopeName) || (
+                ! in_array($scopeName, $allowedMethods) &&
+                ! method_exists(new $modelClass, 'scope' . ucfirst($scopeName)) &&
+                ! Str::startsWith($scopeName, 'where'))
+            ) {
                 continue;
             }
 
