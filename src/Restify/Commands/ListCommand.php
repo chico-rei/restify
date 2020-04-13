@@ -65,9 +65,13 @@ class ListCommand extends BaseCommand implements ListCommandContract
             $scopeName = isset($data['name']) ? $data['name'] : null;
             $value = isset($data['value']) ? $data['value'] : null;
             $values = isset($data['values']) ? $data['values'] : null;
+            $allowedMethods = ['with'];
 
             // Invalid scope name
-            if (!$scopeName || $scopeName == '') continue;
+            if (empty($scopeName) || ! method_exists(new $modelClass, in_array($scopeName, $allowedMethods) ? $scopeName : 'scope'.ucfirst($scopeName)))
+            {
+                continue;
+            }
 
             if ($value)
             {
