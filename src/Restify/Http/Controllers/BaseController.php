@@ -5,6 +5,7 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use ChicoRei\Packages\Restify\Factories\ResponseFactory;
@@ -167,7 +168,7 @@ class BaseController extends Controller
         {
             $data = parent::dispatch($command);
 
-            $transformer = array_get($this->router->current()->defaults, 'restify.transformer');
+            $transformer = Arr::get($this->router->current()->defaults, 'restify.transformer');
 
             if (is_string($transformer) && class_exists($transformer)) {
                 $transformer = new $transformer;
