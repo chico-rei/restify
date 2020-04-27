@@ -17,7 +17,7 @@ class Router implements RouterContract
 
         return array_map(function ($route) use ($transformer) {
             /** @var \Illuminate\Routing\Route $route */
-            return $route->defaults('restify.transformer', $transformer);
+            return $route->defaults('restify.transformer', $transformer)->name('');
         }, $pendingRegRoute->register()->get());
     }
 
