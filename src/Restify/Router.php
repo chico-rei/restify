@@ -13,11 +13,13 @@ class Router implements RouterContract
      */
     public function resource($name, array $options = [], $transformer = null)
     {
-        $pendingRegRoute = Route::resource($name, '\\'.ResourceController::class, array_merge(['except' => ['create', 'edit']], $options));
+        $pendingRegRoute = Route::resource($name, '\\'.ResourceController::class, array_merge(['except' => ['create', 'edit']], $options))->names([
+            'index' => '', 'create' => '', 'store' => '', 'show' => '', 'edit' => '', 'update' => '', 'destroy' => ''
+        ]);
 
         return array_map(function ($route) use ($transformer) {
             /** @var \Illuminate\Routing\Route $route */
-            return $route->defaults('restify.transformer', $transformer)->name('');
+            return $route->defaults('restify.transformer', $transformer);
         }, $pendingRegRoute->register()->get());
     }
 
