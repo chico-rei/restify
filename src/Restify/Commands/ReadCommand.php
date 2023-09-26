@@ -29,7 +29,17 @@ class ReadCommand extends BaseCommand implements ReadCommandContract
 
         try
         {
-            return (new $modelClass)->newQueryWithoutScopes()->findOrFail($id);
+            $modelInstance = (new $modelClass);
+
+            if ($this->request->get('without_scopes', true)) {
+                $modelInstance = $modelInstance->newQueryWithoutScopes();
+            }
+
+            if ($with = $this->request->get('with', true)) {
+                $modelInstance = $modelInstance->with($with);
+            }
+
+            return $modelInstance->findOrFail($id);
         } catch (ModelNotFoundException $e)
         {
             throw new NotFoundHttpException(trans('restify.errors.not_found', [
