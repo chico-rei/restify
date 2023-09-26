@@ -35,7 +35,7 @@ class ReadCommand extends BaseCommand implements ReadCommandContract
                 $modelInstance = $modelInstance->newQueryWithoutScopes();
             }
 
-            if ($with = $this->request->get('with', true)) {
+            if ($with = $this->request->get('with')) {
                 $modelInstance = $modelInstance->with($with);
             }
 
