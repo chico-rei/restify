@@ -9,7 +9,6 @@ use League\Fractal;
 use League\Fractal\Serializer\ArraySerializer;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
-use Symfony\Component\Debug\Exception\FatalErrorException;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -95,10 +94,6 @@ class ResponseFactory
             $this->setContent($this->handleError($resourceException, $transformer))->setStatusCode($resourceException->getStatusCode());
         }
         elseif ($data instanceof Exception || get_parent_class($data) == Exception::class)
-        {
-            $this->setContent($this->handleError($data, $transformer, Exception::class))->setStatusCode(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
-        }
-        elseif ($data instanceof FatalErrorException)
         {
             $this->setContent($this->handleError($data, $transformer, Exception::class))->setStatusCode(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
