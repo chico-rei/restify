@@ -61,6 +61,7 @@ class ResponseFactory
     public function create($data = [], $status = null, $transformer = null)
     {
         $this->setContent($data);
+        $parent = ! is_array($data) && (is_object($data) || class_exists($data)) ? get_parent_class($data) : null;
 
         if (!isset($data))
         {
@@ -78,22 +79,22 @@ class ResponseFactory
         {
             $this->setContent($this->handleItem($data, $transformer));
         }
-        elseif ($data instanceof ResourceException || get_parent_class($data) == ResourceException::class)
+        elseif ($data instanceof ResourceException || $parent == ResourceException::class)
         {
             $this->setContent($this->handleError($data, $transformer, ResourceException::class))->setStatusCode($data->getStatusCode());
         }
-        elseif ($data instanceof HttpException || get_parent_class($data) == HttpException::class)
+        elseif ($data instanceof HttpException || $parent == HttpException::class)
         {
             $this->setContent($this->handleError($data, $transformer, HttpException::class))->setStatusCode($data->getStatusCode());
         }
-        elseif ($data instanceof ValidationException || get_parent_class($data) == ValidationException::class)
+        elseif ($data instanceof ValidationException || $parent == ValidationException::class)
         {
             // Create new ResourceException with the given errors if it is a ValidationException
             $resourceException = new ResourceException($data->getMessage(), $data->validator->errors());
 
             $this->setContent($this->handleError($resourceException, $transformer))->setStatusCode($resourceException->getStatusCode());
         }
-        elseif ($data instanceof Exception || get_parent_class($data) == Exception::class)
+        elseif ($data instanceof Exception || $parent == Exception::class)
         {
             $this->setContent($this->handleError($data, $transformer, Exception::class))->setStatusCode(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -175,7 +176,7 @@ class ResponseFactory
      */
     private function handlePagination(LengthAwarePaginator $pagination, $transformer = null)
     {
-        $transformer = $transformer ?: TransformerFactory::create(class_basename($pagination->getCollection()->first()));
+        $transformer = $transformer ?: TransformerFactory::create(class_basename($pagination->getCollection()->first() ?? ''));
 
         $resource = new Fractal\Resource\Collection($pagination->getCollection(), $transformer);
         $resource->setPaginator(new Fractal\Pagination\IlluminatePaginatorAdapter($pagination));
@@ -190,7 +191,7 @@ class ResponseFactory
      */
     private function handleCollection(Collection $collection, $transformer = null)
     {
-        $transformer = $transformer ?: TransformerFactory::create(class_basename($collection->first()));
+        $transformer = $transformer ?: TransformerFactory::create(class_basename($collection->first() ?? ''));
 
         return $this->handleResource(new Fractal\Resource\Collection($collection, $transformer));
     }
@@ -202,7 +203,7 @@ class ResponseFactory
      */
     private function handleItem($item, $transformer = null)
     {
-        $transformer = $transformer ?: TransformerFactory::create(class_basename($item));
+        $transformer = $transformer ?: TransformerFactory::create(class_basename($item ?? ''));
 
         return $this->handleResource(new Fractal\Resource\Item($item, $transformer));
     }
@@ -216,7 +217,7 @@ class ResponseFactory
      */
     private function handleError($item, $transformer = null, $baseClassPath = null)
     {
-        $transformer = $transformer ?: TransformerFactory::create(class_basename($baseClassPath ?: $item));
+        $transformer = $transformer ?: TransformerFactory::create(class_basename(($baseClassPath ?: $item) ?? ''));
 
         return $this->handleResource(new Fractal\Resource\Item($item, $transformer));
     }
