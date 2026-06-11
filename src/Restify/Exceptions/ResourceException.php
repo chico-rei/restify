@@ -27,7 +27,7 @@ class ResourceException extends HttpException
      * @param array $headers
      * @param int $code
      */
-    public function __construct($message = null, $errors = null, Exception $previous = null, $headers = [], $code = 0)
+    public function __construct($message = null, $errors = null, ?Exception $previous = null, $headers = [], $code = 0)
     {
         if (is_null($errors))
         {
@@ -36,7 +36,8 @@ class ResourceException extends HttpException
         {
             $this->errors = is_array($errors) ? new MessageBag($errors) : $errors;
         }
-        parent::__construct(422, $message, $previous, $headers, $code);
+        // Symfony's HttpException expects a string message (was nullable before Symfony 6).
+        parent::__construct(422, $message ?? '', $previous, $headers, $code);
     }
 
     /**

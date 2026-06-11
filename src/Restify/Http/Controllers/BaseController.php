@@ -166,7 +166,7 @@ class BaseController extends Controller
     {
         try
         {
-            $data = parent::dispatch($command);
+            $data = $this->dispatchSync($command);
 
             $transformer = Arr::get($this->router->current()->defaults, 'restify.transformer');
 

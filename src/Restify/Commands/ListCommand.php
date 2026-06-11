@@ -1,8 +1,10 @@
 <?php namespace ChicoRei\Packages\Restify\Commands;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Str;
+use ReflectionMethod;
 use ChicoRei\Packages\Restify\Contracts\Commands\ListCommand as ListCommandContract;
 
 /**
@@ -71,7 +73,7 @@ class ListCommand extends BaseCommand implements ListCommandContract
             // Invalid scope name
             if (empty($scopeName) || (
                 ! in_array($scopeName, $allowedMethods) &&
-                ! method_exists(new $modelClass, 'scope' . ucfirst($scopeName)) &&
+                ! $this->isModelScope($modelClass, $scopeName) &&
                 ! Str::startsWith($scopeName, 'where'))
             ) {
                 continue;
@@ -107,6 +109,36 @@ class ListCommand extends BaseCommand implements ListCommandContract
         }
 
         return $query;
+    }
+
+    /**
+     * Determine if the given name refers to a local scope on the model.
+     *
+     * Supports both the classic "scopeXxx" method convention and the
+     * #[Scope] attribute introduced in Laravel 11/12, where the scope is
+     * declared on a bare-named method (without the "scope" prefix).
+     *
+     * @param string $modelClass
+     * @param string $scopeName
+     * @return bool
+     */
+    protected function isModelScope($modelClass, $scopeName)
+    {
+        // Classic convention: a "scopeXxx" method.
+        if (method_exists($modelClass, 'scope' . ucfirst($scopeName)))
+        {
+            return true;
+        }
+
+        // Laravel 11/12 convention: a bare-named method annotated with #[Scope].
+        if (class_exists(Scope::class) && method_exists($modelClass, $scopeName))
+        {
+            $attributes = (new ReflectionMethod($modelClass, $scopeName))->getAttributes(Scope::class);
+
+            return ! empty($attributes);
+        }
+
+        return false;
     }
 
     /**
