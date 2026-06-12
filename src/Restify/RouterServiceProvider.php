@@ -27,5 +27,9 @@ class RouterServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/restify.php' => $this->app->configPath('restify.php'),
         ], 'restify-config');
+
+        $this->publishes([
+            __DIR__ . '/../../lang' => $this->app->langPath(),
+        ], 'restify-lang');
     }
 }

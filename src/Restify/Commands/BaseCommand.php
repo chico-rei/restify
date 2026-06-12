@@ -46,8 +46,8 @@ class BaseCommand
      */
     public function __construct($modelName, $nestedModelName = null)
     {
-        $this->pluralizedModels = config('restify.paths.pluralized_models');
-        $this->pluralizedRoutes = config('restify.paths.pluralized_routes');
+        $this->pluralizedModels = config('restify.pluralized_models');
+        $this->pluralizedRoutes = config('restify.pluralized_routes');
         $this->modelPath = config('restify.paths.models');
 
         $this->modelName = $modelName;
