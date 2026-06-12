@@ -60,10 +60,14 @@ class ListCommand extends BaseCommand implements ListCommandContract
         }
 
         // Apply available scopes
-        foreach ($this->getScopes() as $json)
+        foreach ($this->getScopes() as $scope)
         {
-            // Decode scopes
-            $data = json_decode($json, true);
+            // Scopes may arrive either as already-decoded arrays (bracket notation,
+            // e.g. scopes[0][name]=...) or as JSON-encoded strings (legacy clients,
+            // e.g. scopes[0]={"name":"..."}). Normalize both to an array.
+            $data = is_array($scope) ? $scope : json_decode($scope, true);
+
+            if (!is_array($data)) continue;
 
             $scopeName = isset($data['name']) ? $data['name'] : null;
             $value = isset($data['value']) ? $data['value'] : null;
