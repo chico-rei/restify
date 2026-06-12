@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 use League\Fractal;
 use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Serializer\SerializerAbstract;
 use ChicoRei\Packages\Restify\Exceptions\ResourceException;
 use ChicoRei\Packages\Restify\Transformers\BaseTransformer;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
@@ -45,7 +46,34 @@ class ResponseFactory
     public function __construct()
     {
         $this->fractal = new Fractal\Manager();
-        $this->fractal->setSerializer(new ArraySerializer());
+        $this->fractal->setSerializer($this->resolveSerializer());
+    }
+
+    /**
+     * Resolve the serializer from the package configuration, falling back to
+     * the ArraySerializer when none is configured.
+     *
+     * The config value may be a serializer instance, a class name or any
+     * callable (e.g. a closure) that returns a SerializerAbstract instance.
+     *
+     * @return SerializerAbstract
+     */
+    private function resolveSerializer(): SerializerAbstract
+    {
+        $serializer = function_exists('config')
+            ? config('restify.serializer', ArraySerializer::class)
+            : ArraySerializer::class;
+
+        if (is_string($serializer) && class_exists($serializer))
+        {
+            $serializer = app($serializer);
+        }
+        elseif (is_callable($serializer))
+        {
+            $serializer = $serializer();
+        }
+
+        return $serializer instanceof SerializerAbstract ? $serializer : new ArraySerializer();
     }
     //</editor-fold>
 
